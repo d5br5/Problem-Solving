@@ -52,3 +52,15 @@ class Solution2:
             else:
                 break
         return answer
+    
+class Solution3:
+    def gcdOfStrings(self, str1: str, str2: str) -> str:
+        if str1+str2 != str2+str1 :
+            return ''
+        l1 = len(str1)
+        l2 = len(str2)
+
+        gcdl = gcd(l1, l2)
+        chunk = str1[:gcdl]
+
+        return chunk if chunk*(l1//gcdl) == str1 and chunk*(l2//gcdl) == str2 else ''
