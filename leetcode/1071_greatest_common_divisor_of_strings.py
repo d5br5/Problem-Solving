@@ -1,3 +1,5 @@
+import math 
+
 class Solution:
     def gcdOfStrings(self, str1: str, str2: str) -> str:
         answer = ''
@@ -15,4 +17,38 @@ class Solution:
         
             if(chunk*a==str1 and chunk*b==str2):
                 answer=chunk
+        return answer
+
+class Solution2:
+    def gcdOfStrings(self, str1: str, str2: str) -> str:
+        answer = ''
+        l1 = len(str1)
+        l2 = len(str2)
+        l = min(l1,l2)
+
+        i=1
+        while i <= l:
+            if (l1 % i == 0 and l2 % i == 0):
+                m = str1[0:i]
+                n = str2[0:i]
+                if m==n:
+                    if m*int(l1/i)==str1 and n*int(l2/i)==str2:
+                        answer = m
+                else:
+                    return answer
+            
+            p=i
+            q=int(l/i)
+            while q > 1 :
+                q = q-1
+                if l % q == 0:
+                    p = int(l/q)
+                    break
+                else:
+                    p = math.ceil(l/q)
+
+            if i < p :
+                i = p
+            else:
+                break
         return answer
